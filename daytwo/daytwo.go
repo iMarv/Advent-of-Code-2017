@@ -35,11 +35,9 @@ func minAndMax(numbers []int) (int, int) {
 func divideChecksum(numbers []int) (sum int) {
 	sort.Sort(sort.Reverse(sort.IntSlice(numbers)))
 	for big := 0; big < len(numbers); big++ {
-		if big < len(numbers)-1 {
-			for small := big + 1; small < len(numbers); small++ {
-				if numbers[big]%numbers[small] == 0 {
-					sum += numbers[big] / numbers[small]
-				}
+		for small := big + 1; small < len(numbers); small++ {
+			if numbers[big]%numbers[small] == 0 {
+				sum += numbers[big] / numbers[small]
 			}
 		}
 	}
