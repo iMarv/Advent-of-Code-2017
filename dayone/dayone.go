@@ -6,9 +6,18 @@ const Captcha = "299171288753329525643213925696342571212445168199975692849386772
 // FirstCaptcha solves the first captcha of day 1
 func FirstCaptcha(input string) (sum int) {
 	for index, char := range input {
-		if index < len(input)-1 && input[index] == input[index+1] {
+		if input[index] == input[(index+1)%len(input)] {
 			sum += (int(char) - '0')
-		} else if index == len(input)-1 && input[0] == input[index] {
+		}
+	}
+	return
+}
+
+// SecondCaptcha solves the second captcha of day 1
+func SecondCaptcha(input string) (sum int) {
+	distance := len(input) / 2
+	for index, char := range input {
+		if input[index] == input[(index+distance)%len(input)] {
 			sum += (int(char) - '0')
 		}
 	}

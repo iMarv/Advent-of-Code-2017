@@ -6,5 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Println(dayone.FirstCaptcha(dayone.Captcha))
+	fmt.Println("Day 1:")
+	fmt.Println("Captcha 1:", dayone.FirstCaptcha(dayone.Captcha))
+	fmt.Println("Captcha 2:", dayone.SecondCaptcha(dayone.Captcha))
 }
