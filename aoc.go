@@ -1,16 +1,30 @@
 package main
 
 import (
+	"Adventofcode/dayfour"
 	"Adventofcode/dayone"
 	"Adventofcode/daytwo"
+	"bufio"
 	"fmt"
+	"log"
+	"os"
+	"strings"
 )
 
 func main() {
+	d1()
+	d2()
+	d3()
+	d4()
+}
+
+func d1() {
 	fmt.Println("Day 1:")
 	fmt.Println("Captcha 1:", dayone.FirstCaptcha(dayone.Captcha))
 	fmt.Println("Captcha 2:", dayone.SecondCaptcha(dayone.Captcha))
+}
 
+func d2() {
 	fmt.Println("Day 2:")
 
 	checksumValues := [][]int{
@@ -34,5 +48,27 @@ func main() {
 
 	fmt.Println("Checksum 1:", daytwo.CalcFirstChecksum(checksumValues))
 	fmt.Println("Checksum 2:", daytwo.CalcSecondChecksum(checksumValues))
+}
 
+func d3() {}
+
+func d4() {
+	var passphrases [][]string
+	file, err := os.Open("./dayfour/input")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		if len(scanner.Text()) > 0 {
+			splitLine := strings.Split(scanner.Text(), " ")
+			passphrases = append(passphrases, splitLine)
+		}
+	}
+
+	fmt.Println("Day 4:")
+	fmt.Println("Valid phrases:", dayfour.ValidPhrasesCount(passphrases, dayfour.NoDuplicatesValidator))
+	fmt.Println("Valid anagram phrases:", dayfour.ValidPhrasesCount(passphrases, dayfour.NoAnagramsValidator))
 }
