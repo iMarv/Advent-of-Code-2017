@@ -1,6 +1,7 @@
 package main
 
 import (
+	"Adventofcode/dayfive"
 	"Adventofcode/dayfour"
 	"Adventofcode/dayone"
 	"Adventofcode/daytwo"
@@ -8,6 +9,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -16,6 +18,7 @@ func main() {
 	d2()
 	d3()
 	d4()
+	d5()
 }
 
 func d1() {
@@ -71,4 +74,33 @@ func d4() {
 	fmt.Println("Day 4:")
 	fmt.Println("Valid phrases:", dayfour.ValidPhrasesCount(passphrases, dayfour.NoDuplicatesValidator))
 	fmt.Println("Valid anagram phrases:", dayfour.ValidPhrasesCount(passphrases, dayfour.NoAnagramsValidator))
+}
+
+func d5() {
+	var instructions []int
+	file, err := os.Open("./dayfive/input")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		if len(scanner.Text()) > 0 {
+			x, err := strconv.Atoi(scanner.Text())
+			if err != nil {
+				log.Fatal(err)
+			}
+			instructions = append(instructions, x)
+		}
+	}
+
+	instructionsCopy := make([]int, len(instructions))
+	copy(instructionsCopy, instructions)
+
+	fmt.Println("Day 5:")
+
+	fmt.Println("Steps:", dayfive.CountSteps(instructions, dayfive.StepForward))
+	fmt.Println("Steps decrease:", dayfive.StepForwardDecreaseIterative(instructionsCopy))
+
 }
