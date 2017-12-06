@@ -4,6 +4,7 @@ import (
 	"Adventofcode/dayfive"
 	"Adventofcode/dayfour"
 	"Adventofcode/dayone"
+	"Adventofcode/daysix"
 	"Adventofcode/daytwo"
 	"bufio"
 	"fmt"
@@ -19,6 +20,7 @@ func main() {
 	d3()
 	d4()
 	d5()
+	d6()
 }
 
 func d1() {
@@ -103,4 +105,14 @@ func d5() {
 	fmt.Println("Steps:", dayfive.CountSteps(instructions, dayfive.StepForward))
 	fmt.Println("Steps decrease:", dayfive.StepForwardDecreaseIterative(instructionsCopy))
 
+}
+
+func d6() {
+	row := []int{4, 1, 15, 12, 0, 9, 9, 5, 5, 8, 7, 3, 14, 5, 12, 3}
+	rowCopy := make([]int, len(row))
+	copy(rowCopy, row)
+
+	fmt.Println("Day 6:")
+	fmt.Println("Steps:", daysix.CountRedistributions(row))
+	fmt.Println("Steps Single:", daysix.CountRedistributionsSingle(rowCopy))
 }

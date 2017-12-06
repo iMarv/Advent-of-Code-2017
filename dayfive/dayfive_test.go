@@ -34,3 +34,12 @@ func TestCountStepsDecreaseIterative(t *testing.T) {
 		t.Fatalf("Expected %d but got %d", expected, actual)
 	}
 }
+
+func BenchmarkCountStepsDecrease100(b *testing.B) {
+
+	for n := 0; n < b.N; n++ {
+		instructions := []int{0, 3, 0, 1, -3}
+		CountSteps(instructions, StepForwardDecrease)
+
+	}
+}
